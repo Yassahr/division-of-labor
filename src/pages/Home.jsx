@@ -5,7 +5,8 @@ import ChoreInputForm from "@/components/ChoreInputForm"
 function Home() {
   return(
     <div>
-      <h1>This should have a short description of what the form should do and the tracker form components</h1>
+        <h1>Household Labor Tracker</h1>
+        <p className="subtitle">Make invisible work visible. Start the conversation.</p>
       <ChoreInputForm/>
     </div>
     )
