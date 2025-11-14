@@ -32,6 +32,7 @@ function Stopwatch({clockedInTime}) {
         if (clockedInTime) {
             clockedInTime(elapsedTime);
         }
+               setElapsedTime(0);
     }
     function formatTime() {
         // convert to hours, mins, seconds
@@ -50,8 +51,8 @@ function Stopwatch({clockedInTime}) {
             <div className="display">
                 {formatTime()}
             </div>
-            <button onClick={start} className="clock-in">Start Grinding</button>
-             <button onClick={stop} className="clock-out">Done!</button>
+            <button type="button" onClick={start} className="clock-in">Start Grinding</button>
+             <button type="button" onClick={stop} className="clock-out">Done!</button>
 
     </div>
     );

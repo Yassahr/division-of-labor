@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
+import '@/components/ui/ChoreInputForm.css'
 import Stopwatch from './Stopwatch.jsx';
 import ChoreGraph from './ChoreGraph.jsx';
 
@@ -108,44 +108,31 @@ function ChoreInputForm() {
             <option value="vacuum">Vacuum</option>
             <option value="dishes">Clean the Dishes</option>
           </select>
+                <Stopwatch clockedInTime={handleElapsedTime}/>
         </div>
 
         <button type="submit" className="resultsButton">See My Results!</button>
       </form>
 
-      <Stopwatch clockedInTime={handleElapsedTime}/>
         
       {/* ⭐ UPDATED: Results section - only show if there are submissions */}
-      {showResults && submissions.length > 0 && (
-        <div className="results" id="results">
-          <h2>Your Household Labor Distribution</h2>
-          
-          <div className="comparison">
-            <div className="partner-result">
-              <h3 id="result-p1-name">Partner 1</h3>
-              <div className="hours" id="result-p1-hours">{totals.partner1}</div>
-              <div className="hours-label">hours total</div>
-            </div>
-            <div className="partner-result">
-              <h3 id="result-p2-name">Partner 2</h3>
-              <div className="hours" id="result-p2-hours">{totals.partner2}</div>
-              <div className="hours-label">hours total</div>
-            </div>
-          </div>
+{showResults && submissions.length > 0 && (
+  <div className="results" id="results">
+    <h2>Your Household Labor Distribution</h2>
 
-          {/* ⭐ NEW: Show list of all submissions */}
-          <div className="submissions-list">
-            <h3>All Entries:</h3>
-            {submissions.map((sub, index) => (
-              <div key={index} className="submission-item">
-                <strong>{sub.name === 'partner1' ? 'Partner 1' : 'Partner 2'}</strong> - {sub.task} - {sub.timeSpent}
-              </div>
-            ))}
-          </div>
-
-          <ChoreGraph />
+    <div className="submissions-list">
+      <h3>All Entries:</h3>
+      {submissions.map((sub, index) => (
+        <div key={index} className="submission-item">
+          <strong>{sub.name === 'partner_one' ? 'Partner 1' : 'Partner 2'}</strong> - {sub.task} - {sub.timeSpent}
         </div>
-      )}
+      ))}
+    </div>
+
+    {/* ⭐ Pass submissions and totals as props */}
+    <ChoreGraph submissions={submissions} totals={totals} />
+  </div>
+)}
     </div>
   );
 }
